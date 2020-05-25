@@ -16,10 +16,10 @@ func main() {
 
 	r := gin.Default()
 	r = CollectRoute(r)
-	// port := viper.GetString("server.port")
-	// if port != "" {
-	// 	panic(r.Run(":" + port))
-	// }
+	port := viper.GetString("server.port")
+	if port != "" {
+		panic(r.Run(":" + port))
+	}
 	panic(r.Run()) // listen and serve on 0.0.0.0:8080
 }
 

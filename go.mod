@@ -17,7 +17,7 @@ require (
 	github.com/nsf/gocode v0.0.0-20190302080247-5bee97b48836 // indirect
 	github.com/rogpeppe/godef v1.1.2 // indirect
 	github.com/spf13/viper v1.7.0
-	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518 // indirect
+	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518
 	github.com/tpng/gopkgs v0.0.0-20180428091733-81e90e22e204 // indirect
 	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd
 	golang.org/x/sys v0.0.0-20200509044756-6aff5f38e54f // indirect

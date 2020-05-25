@@ -18,9 +18,20 @@ import (
 
 func Register(c *gin.Context) {
 	db := common.GetDB()
-	name := c.PostForm("name")
-	telephone := c.PostForm("telephone")
-	password := c.PostForm("password")
+
+	//1.使用map来获取请求参数
+	// var requesrMap=make(map[string]string)
+	// json.NewDecoder(c.Request.Body).Decode(&requesrMap)
+
+	//2.使用model来获取请求参数
+	var rerquestUser = model.User{}
+	// json.NewDecoder(c.Request.Body).Decode(&rerquestUser)
+	//3.使用bind来获取请求参数
+	c.Bind(&rerquestUser)
+
+	name := rerquestUser.Name
+	telephone := rerquestUser.Telephone
+	password := rerquestUser.Password
 
 	if len(telephone) != 11 {
 		response.Response(c, http.StatusUnprocessableEntity, 422, nil, "手机号必须为11位")
@@ -58,13 +69,25 @@ func Register(c *gin.Context) {
 	}
 	db.Create(&newUser)
 
-	response.Success(c, nil, "注册成功")
+	//生成token
+	token, err := common.ReleaseToken(newUser)
+	if err != nil {
+		response.Response(c, http.StatusInternalServerError, 500, nil, "token错误")
+		log.Printf("token generate error: %v", err)
+		return
+	}
+
+	//返回结果
+	response.Success(c, gin.H{"token": token}, "注册成功")
 }
 
 func Login(c *gin.Context) {
 	db := common.GetDB()
-	telephone := c.PostForm("telephone")
-	password := c.PostForm("password")
+	var rerquestUser = model.User{}
+	c.Bind(&rerquestUser)
+
+	telephone := rerquestUser.Telephone
+	password := rerquestUser.Password
 
 	if len(telephone) != 11 {
 		response.Response(c, http.StatusUnprocessableEntity, 422, nil, "手机号必须为11位")
