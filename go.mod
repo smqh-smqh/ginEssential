@@ -16,6 +16,7 @@ require (
 	github.com/newhook/go-symbols v0.0.0-20151212134530-b75dfefa0d23 // indirect
 	github.com/nsf/gocode v0.0.0-20190302080247-5bee97b48836 // indirect
 	github.com/rogpeppe/godef v1.1.2 // indirect
+	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/viper v1.7.0
 	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518
 	github.com/tpng/gopkgs v0.0.0-20180428091733-81e90e22e204 // indirect
